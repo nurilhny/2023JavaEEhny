@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="'http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>物流管理系统</title>
+</head>
+<body>
+<div>
+    <p th:text="'欢迎用户:'+${user.account}"></p>
+</div><br>
+<form th:action="@{/order/add}" method="get">
+    <input type="submit" value="添加订单">
+</form>
+<form th:action="@{/order/quit}" method="get">
+    <input type="submit" value="退出系统">
+</form>
+<table border="1">
+    <tr>
+        <th>订单号</th>
+        <th>商品</th>
+        <th>数量</th>
+        <th>发货地址</th>
+        <th>收货地址</th>
+        <th>订单状态</th>
+        <th>详细状态</th>
+        <th>是否签收</th>
+        <th>是否取消</th>
+    </tr>
+    <tr  th:each="order : ${orders}" >
+        <td th:text="${order.orderId}"></td>
+        <td th:text="${order.productName}"></td>
+        <td th:text="${order.quantity}"></td>
+        <td th:text="${order.srcAddress}"></td>
+        <td th:text="${order.desAddress}"></td>
+        <td th:text="${order.orderStatus}"></td>
+        <td> <a th:href="@{'/order/detail'+'?orderId='+${order.orderId}}">查看</a></td>
+        <td><a th:href="@{'/order/update?orderStatus=completed'+'&orderId='+${order.orderId}}">签收</a></td>
+        <td><a th:href="@{'/order/update?orderStatus=cancelled'+'&orderId='+${order.orderId}}">取消</a></td>
+    </tr>
+    </tr>
+
+</table>
+</body>
+</html>

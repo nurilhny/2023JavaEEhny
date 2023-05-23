@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hny.mapper.ProductMapper">
+    
+    <resultMap id="productMap" type="Product">
+        <id property="productId" column="product_id"></id>
+        <result property="productName" column="product_name"></result>
+        <result property="srcAddress" column="src_address"></result>
+        <result property="siteId" column="site_id"></result>
+        <result property="siteName" column="site_name"></result>
+        <result property="price" column="price"></result>
+    </resultMap>
+
+    <select id="getAllProducts" resultMap="productMap">
+        select *
+        from products p INNER JOIN sites s
+        ON p.site_id = s.site_id
+    </select>
+
+    <select id="getProductByName" resultMap="productMap">
+        select *
+        from products p INNER JOIN sites s
+        ON p.site_id = s.site_id
+        where p.product_name = #{productName}
+    </select>
+
+    
+</mapper>

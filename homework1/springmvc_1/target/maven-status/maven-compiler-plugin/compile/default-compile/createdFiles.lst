@@ -1,0 +1,6 @@
+com\hny\bean\User.class
+com\hny\mapper\UserMapper.class
+com\hny\service\impl\UserServiceImpl.class
+com\hny\service\UserService.class
+com\hny\controller\UserController.class
+com\hny\controller\HelloController.class

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="'http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>物流管理系统</title>
+</head>
+<body>
+<h1>订单详情</h1>
+<table border="1">
+<!--    o.order_id ,o.order_status , u.user_name , s.site_name-->
+    <tr>
+        <th>订单号</th>
+        <th>订单状态</th>
+        <th>送货员</th>
+        <th>当前所在站</th>
+    </tr>
+    <tr>
+        <td th:text="${order.orderId}"></td>
+        <td th:text="${order.orderStatus}"></td>
+        <td th:text="${order.courierName}"></td>
+        <td th:text="${order.siteName}"></td>
+    </tr>
+    </tr>
+    <a th:href="@{/order/user}">返回</a>
+</table>
+</body>
+</html>

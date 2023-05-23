@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hny.mapper.OrderMapper">
+
+    <resultMap id="orderMap" type="Order">
+        <id property="orderId" column="order_id"></id>
+        <result property="productName" column="product"></result>
+        <result property="userId" column="user_id"></result>
+        <result property="courierId" column="courier_id"></result>
+        <result property="quantity" column="quantity"></result>
+        <result property="srcAddress" column="src_address"></result>
+        <result property="desAddress" column="des_address"></result>
+        <result property="orderStatus" column="order_status"></result>
+        <result property="siteId" column="site_id"></result>
+        <result property="totalPrice" column="total_price"></result>
+        <result property="siteName" column="site_name"></result>
+        <result property="courierName" column="courier_name"></result>
+    </resultMap>
+
+    <select id="getOrdersByUserId" resultMap="orderMap">
+        select *
+        from orders
+        where user_id = #{userId}
+    </select>
+
+    <select id="getOrderDetailByOrderId" resultMap="orderMap">
+        SELECT o.order_id ,o.order_status , u.user_name courier_name, s.site_name
+        FROM orders o, users u , sites s
+        WHERE o.courier_id = u.user_id AND o.site_id = s.site_id AND o.order_id = #{orderId}
+    </select>
+
+    <select id="getOrdersByAddress" resultMap="orderMap">
+        SELECT o.order_id ,o.product , o.quantity ,o.src_address ,o.des_address ,o.courier_id,s.site_name, o.order_status
+        FROM users u ,sites s ,orders o
+        WHERE u.address = s.site_name AND s.site_id = o.site_id AND u.address = #{srcAddress}
+    </select>
+
+    <insert id="addOrder" parameterType="com.hny.bean.Order">
+        insert into orders(product,user_id,quantity,src_address,des_address,site_id,total_price)
+        values(#{order.productName},#{order.userId},#{order.quantity},#{order.srcAddress},#{order.desAddress},#{order.siteId},#{order.totalPrice})
+    </insert>
+
+    <update id="updateOrderStatus" parameterType="com.hny.bean.Order">
+        update orders
+        set order_status = #{order.orderStatus}
+        where order_id = #{order.orderId}
+    </update>
+
+    <update id="updateCourierIdByOrderId" parameterType="com.hny.bean.Order">
+        update orders
+        set courier_id = #{order.courierId}
+        where order_id = #{order.orderId}
+    </update>
+
+    <update id="updateSiteIdByOrderId" parameterType="com.hny.bean.Order">
+        update orders
+        set site_id = #{order.siteId}
+        where order_id = #{order.orderId}
+    </update>
+
+</mapper>

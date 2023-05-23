@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hny.mapper.UserMapper">
+    
+    <resultMap id="userMap" type="User">
+        <id property="userId" column="user_id"></id>
+        <result property="userName" column="user_name"></result>
+        <result property="account" column="account"></result>
+        <result property="password" column="password"></result>
+        <result property="userType" column="user_type"></result>
+        <result property="address" column="address"></result>
+        <result property="phone" column="phone"></result>
+    </resultMap>
+
+    <select id="getAllUsers" resultMap="userMap">
+        select *
+        from users
+        where user_id >0
+    </select>
+
+    <select id="getPasswordByAccount" resultType="String">
+        select password
+        from users
+        where account=#{account}
+    </select>
+
+    <select id="getUserTypeByAccount" resultType="String">
+        select user_type
+        from users
+        where account=#{account}
+    </select>
+
+    <select id="getUserIdByAccount" resultType="int">
+        select user_id
+        from users
+        where account=#{account}
+    </select>
+
+    <select id="getUserByUserId" resultType="com.hny.bean.User">
+        select *
+        from users
+        where user_id = #{userId}
+    </select>
+
+    <insert id="addAccount" parameterType="com.hny.bean.User">
+        insert into users(user_name,account,password,user_type,address,phone)
+        values(#{user.userName},#{user.account},#{user.password},#{user.userType},#{user.address},#{user.phone})
+    </insert>
+
+    <delete id="delUserByUserId" parameterType="int">
+        delete from users where user_id = #{userId}
+    </delete>
+    
+</mapper>

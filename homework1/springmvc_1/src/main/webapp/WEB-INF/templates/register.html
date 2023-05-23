@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="'http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>物流管理系统</title>
+</head>
+<body>
+<form th:action="@{/register}" method="post">
+    帐号：<input type="text" name="account"><br>
+    密码：<input type="password" name="password"><br>
+    姓名：<input type="text" name="userName"><br>
+    身份：<input type="radio" name="userType" value="user">用户
+    <input type="radio" name="userType" value="manager">管理员
+    <input type="radio" name="userType" value="courier">运货员<br>
+    电话:<input type="text" name="phone"><br>
+    地址/站点:<input type="text" name="address"><br>
+    <input type="submit" value="注册">
+</form>
+</body>
+</html>
