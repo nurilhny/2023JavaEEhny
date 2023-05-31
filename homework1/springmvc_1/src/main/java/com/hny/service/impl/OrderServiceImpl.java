@@ -6,6 +6,7 @@ import com.hny.service.OrderService;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
 
     public int updateOrderStatus(Order order){return orderMapper.updateOrderStatus(order);}
 
-
+    @Transactional
     public int updateCourierIdByOrderId(Order order) {
         return orderMapper.updateCourierIdByOrderId(order);
     }
