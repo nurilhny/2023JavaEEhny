@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="'http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>物流管理系统</title>
+</head>
+<body>
+<h1>订单</h1>
+<form th:action="@{/order/user/add}" method="post">
+    商品:<select name="productName">
+        <option th:each="product:${products}" th:text="${product.productName}" th:value="${product.productName}"></option>
+        </select><br>
+    数量:<input type="text" name="quantity"><br>
+    收货地址:<input type="text" name="desAddress"><br>
+    <input type="submit" value="提交">
+</form><br>
+<a th:href="@{/order/user}">返回</a>
+</body>
+</html>

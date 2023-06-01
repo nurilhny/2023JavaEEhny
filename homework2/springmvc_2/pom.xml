@@ -6,7 +6,7 @@
 
     <groupId>com.hny</groupId>
     <artifactId>springmvc_2</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -113,6 +113,35 @@
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring5</artifactId>
             <version>3.0.12.RELEASE</version>
+        </dependency>
+        <!--security连接web的包，含有其他依赖包-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.3.1.RELEASE</version>
+        </dependency>
+        <!--security配置所需的包-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+        <!--security标签库的依赖包-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+        <!--jwt依赖-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
     </dependencies>
 

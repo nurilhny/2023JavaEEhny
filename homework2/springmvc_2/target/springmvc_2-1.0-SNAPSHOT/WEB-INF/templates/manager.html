@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="'http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>物流管理系统</title>
+</head>
+<body>
+<div>
+    <p th:text="'欢迎管理员:'+${_user.account}"></p>
+</div><br>
+
+<form th:action="@{/order/quit}" method="get">
+    <input type="submit" value="退出系统">
+</form>
+<table border="1">
+    <tr>
+        <th>用户名</th>
+        <th>帐号</th>
+        <th>密码</th>
+        <th>用户类型</th>
+        <th>收货地址/常驻站点</th>
+        <th>电话</th>
+        <th>是否删除</th>
+    </tr>
+    <tr  th:each="user : ${users}" >
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.account}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.userType}"></td>
+        <td th:text="${user.address}"></td>
+        <td th:text="${user.phone}"></td>
+        <td><a th:href="@{'/manager/delete?userId='+${user.userId}}">删除</a></td>
+<!--        <td><a th:href="@{'/order/update?siteId='+${order.siteId}+'&orderId='+${order.orderId}}">转移</a></td>-->
+    </tr>
+    </tr>
+
+</table>
+</body>
+</html>
