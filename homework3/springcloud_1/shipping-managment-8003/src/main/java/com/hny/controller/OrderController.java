@@ -11,14 +11,14 @@ import com.hny.service.ProductService;
 import com.hny.service.SiteService;
 import com.hny.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
+@PreAuthorize("hasAnyAuthority('user','courier')")
 public class OrderController {
 
     @Autowired

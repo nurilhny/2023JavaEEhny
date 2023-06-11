@@ -1,0 +1,7 @@
+com\hny\utils\MD5Utils.class
+com\hny\utils\R.class
+com\hny\utils\ResponseUtils.class
+com\hny\entity\User.class
+com\hny\entity\Product.class
+com\hny\entity\Site.class
+com\hny\entity\Order.class

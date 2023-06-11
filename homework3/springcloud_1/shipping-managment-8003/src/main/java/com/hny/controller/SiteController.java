@@ -3,11 +3,13 @@ package com.hny.controller;
 import com.hny.entity.Site;
 import com.hny.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasAnyAuthority('user','courier')")
 public class SiteController {
     @Autowired
     SiteService siteService;

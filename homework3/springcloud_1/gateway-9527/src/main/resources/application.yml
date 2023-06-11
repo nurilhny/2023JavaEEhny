@@ -36,6 +36,11 @@ spring:
           predicates:
             - Path=/sites/**
 
+        - id: auth_service1
+          uri: lb://auth-service
+          predicates:
+            - Path=/oauth/**
+
 eureka:
   instance:
     instance-id: gateway9527

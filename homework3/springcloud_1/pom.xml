@@ -16,6 +16,8 @@
       <module>gateway-9527</module>
       <module>user-managment-8002</module>
       <module>config-center-3344</module>
+      <module>config-client-3355</module>
+      <module>auth-managment-8004</module>
   </modules>
 
   <packaging>pom</packaging>

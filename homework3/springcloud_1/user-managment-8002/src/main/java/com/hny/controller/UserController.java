@@ -7,12 +7,14 @@ import com.hny.service.UserService;
 import com.hny.utils.MD5Utils;
 import com.hny.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
+@PreAuthorize("hasAnyAuthority('manager')")
 public class UserController {
 
     @Autowired
@@ -82,6 +84,12 @@ public class UserController {
             return R.error();
         }
 
+    }
+
+    // 根据账户获得userId
+    @GetMapping("/users/{account}")
+    public Integer getUserIdByAccount(@PathVariable("account") String username){
+        return userService.getUserIdByAccount(username);
     }
 
     // 添加用户
