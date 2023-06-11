@@ -1,0 +1,29 @@
+server:
+  port: 3377
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master #读取分支
+      name: config #配置文件名称
+      profile: dev #读取后缀名称  综合以上3个:master分支上的config-dev.yml的配置文件，读取http://localhost:3344/master/config-dev.yml
+      uri: http://localhost:3366 #配置中心地址
+eureka:
+  instance:
+    instance-id: configClient3377 #实例名
+    prefer-ip-address: true #访问路径显示ip地址
+  client:
+    register-with-eureka: true     #false表示不向注册中心注册自己。
+    fetch-registry: true     #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    service-url:
+      #服务注册地址
+      defaultZone: http://localhost:7003/eureka/
+
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

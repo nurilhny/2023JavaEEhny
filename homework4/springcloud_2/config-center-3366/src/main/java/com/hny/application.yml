@@ -1,0 +1,24 @@
+server:
+  port: 3366
+
+spring:
+  application:
+    name: config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/nurilhny/2023javaEEHNY.git #gitHub上的git仓库地址
+          search-paths: #搜索目录
+            - homework4
+      label: master #读取分支
+eureka:
+  instance:
+    instance-id: configCenter3366 #实例名
+    prefer-ip-address: true #访问路径显示ip地址
+  client:
+    register-with-eureka: true     #false表示不向注册中心注册自己。
+    fetch-registry: true     #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    service-url:
+      #服务注册地址
+      defaultZone: http://localhost:7003/eureka/
