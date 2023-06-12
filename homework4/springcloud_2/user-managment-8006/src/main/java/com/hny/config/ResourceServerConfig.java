@@ -29,7 +29,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").access("#oauth2.hasScope('all')") // 匹配所有路径，访问令牌的scope得是'all'
+                .antMatchers("./users/userId").permitAll()
+                .anyRequest().access("#oauth2.hasScope('all')") // 匹配所有路径，访问令牌的scope得是'all'
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // 无需记录session
 
@@ -40,7 +41,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public ResourceServerTokenServices tokenService(){
         // 使用远程服务请求授权服务器校验token,必须指定token的url、client_id、client_secret
         RemoteTokenServices service = new RemoteTokenServices();
-        service.setCheckTokenEndpointUrl("http://localhost:8004/oauth/check_token");
+        service.setCheckTokenEndpointUrl("http://localhost:8008/oauth/check_token");
         service.setClientId("c1"); //客户端id
         service.setClientSecret("secret"); //客户端密钥
         return service;

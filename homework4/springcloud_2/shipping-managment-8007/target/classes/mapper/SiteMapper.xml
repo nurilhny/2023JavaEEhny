@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hny.mapper.SiteMapper">
+    
+    <resultMap id="siteMap" type="Site">
+        <id property="siteId" column="site_id"></id>
+        <result property="siteName" column="site_name"></result>
+        <result property="siteAddress" column="site_address"></result>
+        <result property="phone" column="phone"></result>
+    </resultMap>
+
+    <select id="getAllSites" resultMap="siteMap">
+        select *
+        from sites
+    </select>
+
+    <insert id="addSite" parameterType="com.hny.entity.Site">
+        insert into sites(site_name,site_address,phone)
+        values (#{site.siteName},#{site.siteAddress},#{site.phone})
+    </insert>
+
+    <delete id="delSiteById" parameterType="int">
+        delete from sites
+        where site_id = #{siteId}
+    </delete>
+    
+</mapper>

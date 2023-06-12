@@ -17,8 +17,8 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/users/**").authenticated()
-                .anyRequest().permitAll();
+                .antMatchers("/users/userId").permitAll()
+                .anyRequest().authenticated();
                }
 
 

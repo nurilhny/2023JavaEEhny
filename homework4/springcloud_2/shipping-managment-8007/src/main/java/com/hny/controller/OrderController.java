@@ -5,16 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hny.entity.Order;
 import com.hny.entity.Product;
 import com.hny.entity.User;
-import com.hny.service.OrderFeignService;
-import com.hny.service.OrderService;
-import com.hny.service.ProductService;
-import com.hny.service.SiteService;
+import com.hny.service.*;
 import com.hny.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -34,6 +32,9 @@ public class OrderController {
     @Autowired
     SiteService siteService;
 
+
+    @Resource
+    IMessageProvider messageProvider;
 
     // 用户通过userId获取订单
     @GetMapping("/orders/user/{userId}")
@@ -70,7 +71,6 @@ public class OrderController {
     public Boolean addOrder(@RequestBody Order order) {
 
         Product product = productService.getProductByName(order.getProductName());
-
         order.setSiteId(product.getSiteId());
         order.setSrcAddress(product.getSrcAddress());
         order.setTotalPrice(product.getPrice()*order.getQuantity());
@@ -78,10 +78,9 @@ public class OrderController {
         System.out.println(order);
         int flag = orderService.addOrder(order);
 
-
-
         if(flag==1){
             System.out.println("添加成功！");
+            messageProvider.send(order.getUserId());
             return true;
         }else {
             System.out.println("添加失败！");

@@ -14,12 +14,10 @@ import java.util.List;
 
 
 @RestController
-@PreAuthorize("hasAnyAuthority('manager')")
 public class UserController {
 
     @Autowired
     private UserService userService;
-
 
     // 注册
     @PostMapping("/common/register")
@@ -44,6 +42,7 @@ public class UserController {
     }
 
     // 获取所有用户
+    @PreAuthorize("hasAnyAuthority('manager')")
     @GetMapping("/users")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
@@ -51,6 +50,7 @@ public class UserController {
 
 
     // 根据ID删除用户
+    @PreAuthorize("hasAnyAuthority('manager')")
     @DeleteMapping("/users/{userIds}")
     public R derUsers(@PathVariable("userIds") List<String> userIds){
         System.out.println("----------delusers------------");
@@ -67,6 +67,7 @@ public class UserController {
     }
 
     // 根据ID获取用户
+    @PreAuthorize("hasAnyAuthority('manager','courier')")
     @GetMapping("/users/{userId}")
     public R getUserByUserId(@PathVariable("userId") int userId) throws JsonProcessingException {
 
@@ -87,12 +88,14 @@ public class UserController {
     }
 
     // 根据账户获得userId
+    @PreAuthorize("hasAnyAuthority('manager')")
     @GetMapping("/users/account/{account}")
     public Integer getUserIdByAccount(@PathVariable("account") String username){
         return userService.getUserIdByAccount(username);
     }
 
     // 添加用户
+    @PreAuthorize("hasAnyAuthority('manager')")
     @PostMapping("/users")
     public R addUser(@RequestBody User user){
         System.out.println("------------addUser---------------");
@@ -108,6 +111,7 @@ public class UserController {
     }
 
     // 更新用户
+    @PreAuthorize("hasAnyAuthority('manager')")
     @PutMapping("/users")
     public R updateUser(@RequestBody User user){
         Integer userId = user.getUserId();

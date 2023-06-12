@@ -11,8 +11,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableHystrix
-public class AuthMain8004 {
+public class AuthMain8008 {
     public static void main(String[] args) {
-        SpringApplication.run(AuthMain8004.class,args);
+        SpringApplication.run(AuthMain8008.class,args);
     }
 }
