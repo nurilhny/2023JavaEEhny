@@ -1,0 +1,50 @@
+
+CREATE TABLE `orders` (
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  `product` varchar(100) DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `courier_id` int DEFAULT '0',
+  `quantity` int DEFAULT NULL,
+  `src_address` varchar(100) DEFAULT NULL,
+  `des_address` varchar(100) DEFAULT NULL,
+  `order_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'commit',
+  `site_id` int DEFAULT NULL,
+  `total_price` double DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- stmdb.products definition
+
+CREATE TABLE `products` (
+  `product_id` int NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(100) DEFAULT NULL,
+  `src_address` varchar(100) DEFAULT NULL,
+  `site_id` int DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- stmdb.sites definition
+
+CREATE TABLE `sites` (
+  `site_id` int NOT NULL AUTO_INCREMENT,
+  `site_name` varchar(100) DEFAULT NULL,
+  `site_address` varchar(100) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`site_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- stmdb.users definition
+
+CREATE TABLE `users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(100) DEFAULT NULL,
+  `account` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `user_type` varchar(100) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
